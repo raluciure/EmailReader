@@ -1,0 +1,29 @@
+<body>
+    <p class="title">Basic Email Reader</p>
+    <label style=>
+        From: <input type="text" class="form-control" [(ngModel)]="email.from">
+    </label><br>
+    <label>
+        To: <input type="text" class="form-control" [(ngModel)]="email.to">
+    </label><br>
+    <label>
+        Subject: <input type="text" class="form-control" [(ngModel)]="email.subject">
+    </label><br>
+    <label>
+        Body: <textarea class="form-control" rows="5" cols ="30" [(ngModel)]="email.body"></textarea>
+        <!-- <input type="text" class="form-control" [(ngModel)]="email.body"> -->
+    </label><br>
+
+
+    <p class="up-to-date-view">
+        From: {{ email.from }} <br>
+        To: {{ email.to }} <br>
+        Subject: {{ email.subject }} <br>
+        Body: {{ email.body }} <br>
+    </p>
+
+    <div class="buttons">
+        <button (click)="send()" class="btn btn-primary" >Send</button>
+        <button (click)="clear()" class="btn btn-primary" >Clean</button>
+    </div>
+</body>
