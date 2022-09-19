@@ -8,9 +8,9 @@ describe('EmailReaderBasicComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EmailReaderBasicComponent ]
+      declarations: [EmailReaderBasicComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(EmailReaderBasicComponent);
     component = fixture.componentInstance;

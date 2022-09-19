@@ -1,21 +1,21 @@
-body{
-	margin: auto;
+body {
+    margin: auto;
     height: 600px;
     width: 300px;
 }
 
-.title{
+.title {
     font-size: 20px;
     margin: 20px;
 }
 
-.up-to-date-view{
+.up-to-date-view {
     margin-top: 5%;
     margin-bottom: 10%;
 }
 
-.buttons{
+.buttons {
     display: flex;
-    justify-content: space-around; 
+    justify-content: space-around;
     margin-right: 10%;
 }
