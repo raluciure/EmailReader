@@ -19,3 +19,15 @@ body {
     justify-content: space-around;
     margin-right: 10%;
 }
+
+.form-control {
+    border-color: black;
+    border-radius: 0;
+    border-width: 1px;
+}
+
+.email-field {
+    border-color: black;
+    border-radius: 0;
+    border-width: 1px;
+}

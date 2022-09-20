@@ -18,7 +18,6 @@ export class EmailReaderBasicComponent implements OnInit {
   }
 
   send(): void {
-    console.log("Sending the email.");
     if (this.email.from == "" || this.email.to == "" || this.email.body == "" || this.email.subject == "") {
       window.alert("Complete all the email fields before sending!");
     }
@@ -27,14 +26,10 @@ export class EmailReaderBasicComponent implements OnInit {
         " with the subject: " + this.email.subject + " and body: " + this.email.body);
     }
 
-    this.email.from = "";
-    this.email.to = "";
-    this.email.subject = "";
-    this.email.body = "";
+    this.clear();
   }
 
   clear(): void {
-    console.log("Clearing the fields");
     this.email.from = "";
     this.email.to = "";
     this.email.subject = "";

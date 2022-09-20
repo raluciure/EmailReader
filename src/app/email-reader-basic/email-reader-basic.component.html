@@ -1,18 +1,23 @@
 <body>
     <p class="title">Basic Email Reader</p>
-    <label style=>
-        From: <input type="text" class="form-control" [(ngModel)]="email.from">
-    </label><br>
     <label>
-        To: <input type="text" class="form-control" [(ngModel)]="email.to">
+        From: <input class="form-control" name="fromEmail" [(ngModel)]="email.from" email="true" #fromEmail="ngModel">
     </label><br>
+    <div *ngIf="fromEmail.errors?.['email']" style="color: red;">
+        Email address is not valid!
+    </div>
+    <label>
+        To: <input class="form-control" name="toEmail" [(ngModel)]="email.to" email="true" #toEmail="ngModel">
+    </label><br>
+    <div *ngIf="toEmail.errors?.['email']" style="color: red;">
+        Email address is not valid!
+    </div>
     <label>
         Subject: <input type="text" class="form-control" [(ngModel)]="email.subject">
     </label><br>
     <label>
         Body: <textarea class="form-control" rows="5" cols="30" [(ngModel)]="email.body"></textarea>
     </label><br>
-
 
     <p class="up-to-date-view">
         From: {{ email.from }} <br>
@@ -22,7 +27,7 @@
     </p>
 
     <div class="buttons">
-        <button (click)="send()" class="btn btn-primary">Send</button>
+        <button [disabled]="fromEmail.errors?.['email'] || toEmail.errors?.['email']" (click)="send()" class="btn btn-primary">Send</button>
         <button (click)="clear()" class="btn btn-primary">Clean</button>
     </div>
 </body>
