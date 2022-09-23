@@ -9,27 +9,21 @@ import { Email } from '../interfaces/email';
 export class EmailReaderFormComponent implements OnInit {
 
   email: Email;
-  emailsList: Email[] = [];
   list: Email[] = [];
   @ViewChild('emailForm') emailForm: any;
 
 
   constructor() {
     this.email = { from: "", to: "", subject: "", body: "" };
-    //this.emailsList = undefined;
   }
 
   ngOnInit(): void {
   }
 
   sendForm(): void {
-    //this.emailsList?.push(this.email);
-    this.list.push(this.email);
-    console.log(this.list.length);
-    this.emailsList[this.list.length-1]=this.email;
-    console.log(this.emailsList);
+    this.list.push({ ...this.email });
     window.alert('The email ' + this.email.subject + ' has been sent to ' + this.email.to);
-    // this.clear();
+    this.clear();
   }
 
   clear(): void {

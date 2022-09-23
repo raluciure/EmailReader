@@ -1,9 +1,8 @@
 <form #emailForm="ngForm" (ngSubmit)="sendForm()">
     <div class="form-group">
         <label> From: </label>
-        <input appHighlight class="form-control" type="text" required [(ngModel)]="email.from" name="fromEmail" #fromEmail="ngModel"
-            [ngClass]="fromEmail.valid || fromEmail.pristine ? '': 'bg-danger'"
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+        <input appHighlight class="form-control" type="text" required [(ngModel)]="email.from" name="fromEmail"
+            #fromEmail="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
 
         <div class="alert alert-danger" *ngIf="fromEmail.touched && !fromEmail.valid">
             <div *ngIf="fromEmail.errors?.['required']">Email is required.</div>
@@ -13,9 +12,8 @@
 
     <div class="form-group">
         <label> To: </label>
-        <input appHighlight class="form-control" type="text" required [(ngModel)]="email.to" name="toEmail" #toEmail="ngModel"
-            [ngClass]="toEmail.valid || toEmail.pristine ? '': 'bg-danger'"
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+        <input appHighlight class="form-control" type="text" required [(ngModel)]="email.to" name="toEmail"
+            #toEmail="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
 
         <div class="alert alert-danger" *ngIf="toEmail.touched && !toEmail.valid">
             <div *ngIf="toEmail.errors?.['required']">Email is required.</div>
@@ -25,24 +23,27 @@
 
     <div class="form-group">
         <label> Subject: </label>
-        <input appHighlight class="form-control" type="text" required minlength="10" maxlength="50" [(ngModel)]="email.subject"
-            name="emailSubject" #emailSubject="ngModel"
-            [ngClass]="emailSubject.valid || emailSubject.pristine ? '': 'bg-danger'">
-            <div class="alert alert-danger" *ngIf="emailSubject.touched && !emailSubject.valid">
-                <div *ngIf="emailSubject.errors?.['minlength']">Subject requires minimum 10 characters.</div>
-                <div *ngIf="emailSubject.errors?.['maxlength']">Subject cannot have more than 50 characters.</div>
-            </div>
+        <input appHighlight class="form-control" type="text" required minlength="10" maxlength="50"
+            [(ngModel)]="email.subject" name="emailSubject" #emailSubject="ngModel">
+        <div class="alert alert-danger" *ngIf="emailSubject.touched && !emailSubject.valid">
+            <div *ngIf="emailSubject.errors?.['required']">Subject is required.</div>
+            <div *ngIf="emailSubject.errors?.['minlength']">Subject requires minimum 10 characters.</div>
+            <div *ngIf="emailSubject.errors?.['maxlength']">Subject cannot have more than 50 characters.</div>
+        </div>
     </div>
 
     <div class="form-group">
         <label> Body: </label>
-        <input appHighlight class="form-control" type="text" [(ngModel)]="email.body" name="emailBody" #emailBody="ngModel">
+        <input appHighlight class="form-control" type="text" [(ngModel)]="email.body" name="emailBody"
+            #emailBody="ngModel">
     </div>
+    <br>
 
     <div class="text-right">
         <button class="btn btn-primary btn-sm mr-1" type="submit" [disabled]="!emailForm.form.valid">Submit</button>
         <button class="btn btn-primary btn-sm mr-1" type="button" (click)="clear()">Reset</button>
     </div>
+    <br>
 
     <p class="up-to-date-view">
         From: {{ email.from }} <br>
@@ -50,7 +51,7 @@
         Subject: {{ email.subject }} <br>
         Body: {{ email.body }} <br>
     </p>
-
+    <br>
 
     <div *ngIf="list.length==0">
         <h6>The list of emails is empty!</h6>
