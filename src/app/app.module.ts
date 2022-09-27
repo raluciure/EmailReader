@@ -8,20 +8,31 @@ import { EmailReaderBasicComponent } from './email-reader-basic/email-reader-bas
 import { FormsModule } from '@angular/forms';
 import { EmailReaderFormComponent } from './email-reader-form/email-reader-form.component';
 import { HighlightDirective } from './directives/highlight.directive';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { HttpServerEmailsSimulatorService } from './services/http-server-emails-simulator.service';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { WithBodyFilterPipe } from './pipes/with-body-filter.pipe';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     EmailReaderBasicComponent,
     EmailReaderFormComponent,
-    HighlightDirective
+    HighlightDirective,
+    WithBodyFilterPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     FormsModule,
-
+    Ng2SearchPipeModule,
+    HttpClientModule, 
+    HttpClientInMemoryWebApiModule.forRoot(
+      HttpServerEmailsSimulatorService, { dataEncapsulation: false }
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]

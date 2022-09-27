@@ -1,4 +1,4 @@
-<form #emailForm="ngForm" (ngSubmit)="sendForm()">
+<form #emailForm="ngForm">
     <div class="form-group">
         <label> From: </label>
         <input appHighlight class="form-control" type="text" required [(ngModel)]="email.from" name="fromEmail"
@@ -40,7 +40,7 @@
     <br>
 
     <div class="text-right">
-        <button class="btn btn-primary btn-sm mr-1" type="submit" [disabled]="!emailForm.form.valid">Submit</button>
+        <button class="btn btn-primary btn-sm mr-1" type="submit" [disabled]="!emailForm.form.valid" (click)="sendForm()">Submit</button>
         <button class="btn btn-primary btn-sm mr-1" type="button" (click)="clear()">Reset</button>
     </div>
     <br>
@@ -53,22 +53,27 @@
     </p>
     <br>
 
-    <div *ngIf="list.length==0">
+    <!-- <div *ngIf="emailsList?.length==0">
         <h6>The list of emails is empty!</h6>
-    </div>
+    </div> -->
 
-    <div *ngIf="list.length!=0">
-        <table class="table">
-            <tr>
-                <td>To</td>
-                <td>Subject</td>
-            </tr>
-            <tr *ngFor="let email of list" class="table">
-                <td>{{email.to}}</td>
-                <td>{{email.subject}}</td>
-            </tr>
+    <label>
+        Text filter:
+    </label>
+    <input type="text" class="form-control" [(ngModel)]="filterText" name="filterText">
 
-        </table>
 
-    </div>
-</form>
+    Show only the emails with body: <input type="checkbox" [(ngModel)]="withBody" name="withBody">
+
+    <ul class="list-group my-3">
+        <li *ngFor="let email of emailsList | filter:filterText | withBodyFilter:withBody" class="list-group-item">
+            {{email.id }}. {{email.from}} -> {{email.to}} <br>
+            Subject: {{email.subject}} <br>
+            Body: {{email.body}}
+            <div class="text-right">
+                <button (click)="remove(email.id)" class="btn btn-primary btn-sm mr-1">Remove</button>
+            </div> 
+        </li>
+    </ul>
+
+</form> 

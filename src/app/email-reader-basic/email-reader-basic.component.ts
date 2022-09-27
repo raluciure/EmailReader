@@ -11,7 +11,7 @@ export class EmailReaderBasicComponent implements OnInit {
   email: Email;
 
   constructor() {
-    this.email = { from: "", to: "", subject: "", body: "" };
+    this.email = { id:0, from: "", to: "", subject: "", body: "" };
   }
 
   ngOnInit(): void {
