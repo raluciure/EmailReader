@@ -40,40 +40,46 @@
     <br>
 
     <div class="text-right">
-        <button class="btn btn-primary btn-sm mr-1" type="submit" [disabled]="!emailForm.form.valid" (click)="sendForm()">Submit</button>
+        <button class="btn btn-primary btn-sm mr-1" type="submit" [disabled]="!emailForm.form.valid"
+            (click)="sendForm()">Submit</button>
         <button class="btn btn-primary btn-sm mr-1" type="button" (click)="clear()">Reset</button>
     </div>
     <br>
 
-    <p class="up-to-date-view">
-        From: {{ email.from }} <br>
-        To: {{ email.to }} <br>
-        Subject: {{ email.subject }} <br>
-        Body: {{ email.body }} <br>
-    </p>
-    <br>
+</form>
 
-    <!-- <div *ngIf="emailsList?.length==0">
-        <h6>The list of emails is empty!</h6>
+<p class="up-to-date-view">
+    From: {{ email.from }} <br>
+    To: {{ email.to }} <br>
+    Subject: {{ email.subject }} <br>
+    Body: {{ email.body }} <br>
+</p>
+
+<label>
+    Text filter:
+</label>
+<input type="text" class="form-control" [(ngModel)]="filterText" name="filterText">
+
+
+Show only the emails with body: <input type="checkbox" [(ngModel)]="withBody" name="withBody">
+
+<div *ngIf="emailsList?.length==0">
+    <h6>The list of emails is empty!</h6>
+</div>
+
+<ul class="list-group my-3">
+    <li *ngFor="let email of emailsList | filter:filterText | withBodyFilter:withBody" class="list-group-item">
+        <div> {{email.id }} </div>
+        <div> {{email.from}} </div>
+        <div> {{email.to}} </div>
+        <div> {{email.subject}} </div>
+        <div> {{email.body}} </div>
+        <div class="text-right">
+            <button (click)="remove(email.id)" class="btn btn-primary btn-sm mr-1">Remove</button>
+        </div>
+    </li>
+</ul>
+
+<!-- <div class="alert alert-success alert-dismissable" *ngIf="message">
+        <h2> {{ message }} </h2>
     </div> -->
-
-    <label>
-        Text filter:
-    </label>
-    <input type="text" class="form-control" [(ngModel)]="filterText" name="filterText">
-
-
-    Show only the emails with body: <input type="checkbox" [(ngModel)]="withBody" name="withBody">
-
-    <ul class="list-group my-3">
-        <li *ngFor="let email of emailsList | filter:filterText | withBodyFilter:withBody" class="list-group-item">
-            {{email.id }}. {{email.from}} -> {{email.to}} <br>
-            Subject: {{email.subject}} <br>
-            Body: {{email.body}}
-            <div class="text-right">
-                <button (click)="remove(email.id)" class="btn btn-primary btn-sm mr-1">Remove</button>
-            </div> 
-        </li>
-    </ul>
-
-</form> 

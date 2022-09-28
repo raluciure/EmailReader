@@ -7,3 +7,8 @@
 .ng-invalid.required {
   border-left: 10px solid yellow;
 }
+
+ul>li {
+  display: flex;
+  justify-content: space-between;
+}

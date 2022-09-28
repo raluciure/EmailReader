@@ -29,25 +29,24 @@ export class EmailReaderFormComponent implements OnInit {
   }
 
   getEmailsList() {
-    console.log("Im here")
-    console.log(this.filterText)
     this.emailService.getEmails().subscribe(list => this.emailsList = list);
   }
 
   sendForm(): void {
-    // this.list.push({ ...this.email });
-    // this.emailsList?.push({ ...this.email });
     window.alert('The email ' + this.email.subject + ' has been sent to ' + this.email.to);
     const max = Math.max(...this.emailsList.map(email => email.id))
     this.email.id = max + 1;
-    console.log(this.email)
+
     this.emailService.addEmail(this.email).subscribe(_ => {
-      this.message = 'Email ' + this.email.id + ' added successfully';
+      this.message = 'Email added successfully!';
+      window.alert(this.message);
     },
       err => {
         this.message = `An error has ocurred: ${err.statusText}`;
+        window.alert(this.message);
       }
     );
+
     this.getEmailsList();
     this.clear();
   }
@@ -55,10 +54,12 @@ export class EmailReaderFormComponent implements OnInit {
   remove(id: number): void {
     this.emailService.deleteEmail(id).subscribe(
       _ => {
-        this.message = 'Email ' + id + ' deleted successfully';
+        this.message = 'Email deleted successfully!';
+        window.alert(this.message);
       },
       err => {
         this.message = `An error has ocurred: ${err.statusText}`;
+        window.alert(this.message);
       }
     );
     this.getEmailsList();
@@ -72,8 +73,4 @@ export class EmailReaderFormComponent implements OnInit {
     this.email.body = "";
     this.emailForm.reset();
   }
-
-
-
-
 }
