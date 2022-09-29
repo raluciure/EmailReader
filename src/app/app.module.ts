@@ -13,6 +13,9 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { HttpServerEmailsSimulatorService } from './services/http-server-emails-simulator.service';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { WithBodyFilterPipe } from './pipes/with-body-filter.pipe';
+import { EmailsListComponent } from './emails-list/emails-list.component';
+import { EmailViewerComponent } from './email-viewer/email-viewer.component';
+import { EmailFormComponent } from './email-form/email-form.component';
 
 
 @NgModule({
@@ -21,7 +24,10 @@ import { WithBodyFilterPipe } from './pipes/with-body-filter.pipe';
     EmailReaderBasicComponent,
     EmailReaderFormComponent,
     HighlightDirective,
-    WithBodyFilterPipe
+    WithBodyFilterPipe,
+    EmailsListComponent,
+    EmailViewerComponent,
+    EmailFormComponent
   ],
   imports: [
     BrowserModule,

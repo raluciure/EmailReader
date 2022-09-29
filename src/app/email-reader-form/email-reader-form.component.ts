@@ -34,9 +34,10 @@ export class EmailReaderFormComponent implements OnInit {
 
   sendForm(): void {
     window.alert('The email ' + this.email.subject + ' has been sent to ' + this.email.to);
-    const max = Math.max(...this.emailsList.map(email => email.id))
-    this.email.id = max + 1;
+    // const max = Math.max(...this.emailsList.map(email => email.id))
+    // this.email.id = max + 1;
 
+    this.email.id = null;
     this.emailService.addEmail(this.email).subscribe(_ => {
       this.message = 'Email added successfully!';
       window.alert(this.message);
