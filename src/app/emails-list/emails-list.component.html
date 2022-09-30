@@ -1,4 +1,4 @@
-<label>
+<label id="labelFilter">
     Text filter:
 </label>
 <input type="text" class="form-control" [(ngModel)]="filterText" name="filterText">
@@ -9,18 +9,32 @@ Show only the emails with body: <input type="checkbox" [(ngModel)]="withBody" na
     <h6>The list of emails is empty!</h6>
 </div>
 
-<ul class="list-group my-3">
-    <li *ngFor="let email of emailsList | filter:filterText | withBodyFilter:withBody" class="list-group-item">
-        <!-- <div> {{email.id }} </div> -->
-        <div> {{email.from}} </div>
-        <div> {{email.to}} </div>
-        <div> {{email.subject}} </div>
-        <!-- <div> {{email.body}} </div> -->
-        <div class="text-right">
-            <button (click)="redirect(email.id)" [routerLink]="['/email/' + email.id]" style="margin-right:5px;" class="btn btn-primary btn-sm mr-1">View details</button>
-            <button (click)="remove(email.id)" class="btn btn-primary btn-sm mr-1">Remove</button>
-        </div>
-    </li>
-</ul>
 
-<button (click)="add()" class="btn btn-primary btn-sm mr-1">Create new email</button>
+<div *ngIf="emailsList?.length!=0">
+    <table class="table text-center">
+        <thead>
+            <tr>
+                <th scope="col">From</th>
+                <th scope="col">To</th>
+                <th scope="col">Subject</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let email of emailsList | filter:filterText | withBodyFilter:withBody" class="table">
+                <td>{{email.from}}</td>
+                <td>{{email.to}}</td>
+                <td>{{email.subject}}</td>
+                <td>
+                    <button type="button" class="btn btn-secondary" (click)="redirect(email.id)"
+                        [routerLink]="['/email/' + email.id]" style="margin-right:5px;">View details</button>
+                    <button type="button" class="btn btn-danger" (click)="remove(email.id)">Remove</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="d-grid gap-2 col-6 mx-auto">
+    <button (click)="add()" class="btn btn-primary " type="button">Create new email</button>
+</div>

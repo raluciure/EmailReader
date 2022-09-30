@@ -26,7 +26,7 @@ export class EmailFormComponent implements OnInit {
 
     this.emailService.addEmail(this.email).subscribe(_ => {
       this.message = 'Email added successfully!';
-      window.alert(this.message);
+      //window.alert(this.message);
     },
       err => {
         this.message = `An error has ocurred: ${err.statusText}`;

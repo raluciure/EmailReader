@@ -1,4 +1,4 @@
-<form #emailForm="ngForm">
+<form id="forms" #emailForm="ngForm">
     <div class="form-group">
         <label> From: </label>
         <input appHighlight class="form-control" type="text" required [(ngModel)]="email.from" name="fromEmail"
@@ -38,12 +38,9 @@
             #emailBody="ngModel">
     </div>
     <br>
-
-    <div class="text-right">
-        <button class="btn btn-primary btn-sm mr-1" type="submit" [disabled]="!emailForm.form.valid"
-            (click)="sendForm()">Submit</button>
-        <button class="btn btn-primary btn-sm mr-1" type="button" (click)="clear()">Reset</button>
-    </div>
-    <br>
-
 </form>
+
+<button class="btn btn-primary" type="submit" [disabled]="!emailForm.form.valid" (click)="sendForm()"
+    style="margin-right:5px;">Submit</button>
+<button class="btn btn-primary" type="button" (click)="clear()">Reset</button>
+<button class="btn btn-secondary" type="button" (click)="goBack()" style="margin-left: 5px;">Back</button>

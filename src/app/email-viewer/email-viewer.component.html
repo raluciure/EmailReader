@@ -1,7 +1,16 @@
-<p class="up-to-date-view">
-    From: {{ email.from }} <br>
-    To: {{ email.to }} <br>
-    Subject: {{ email.subject }} <br>
-    Body: {{ email.body }} <br>
-</p>
-<button class="btn btn-primary btn-sm" (click)="goBack()">Back</button>
+<div class="d-flex align-items-center justify-content-center">
+    <dl id="view" class="row text-center">
+        <dt class="col-sm-3">From</dt>
+        <dd class="col-sm-9">{{ email.from }}</dd>
+        <dt class="col-sm-3">To</dt>
+        <dd class="col-sm-9">{{ email.to }}</dd>
+        <dt class="col-sm-3">Subject</dt>
+        <dd class="col-sm-9">{{ email.subject }}</dd>
+        <dt class="col-sm-3">Body</dt>
+        <dd class="col-sm-9">{{ email.body }}</dd>
+    </dl>
+</div>
+
+<div class="d-flex align-items-center justify-content-center">
+    <button class="btn btn-primary" (click)="goBack()">Back</button>
+</div>

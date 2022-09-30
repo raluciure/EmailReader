@@ -1,4 +1,12 @@
-ul>li {
-    display: flex;
-    justify-content: space-between;
-  }
+#labelFilter:before {
+  content: 'Email Reader - Raluca Ciure';
+  background: #8bb3f0;
+  width: 100%;
+  display: block;
+  padding: 0px 20px;
+  color: black;
+  font-family: Roboto;
+  font-size: 26px;
+  text-align: center;
+  margin-bottom: 10px;
+}
